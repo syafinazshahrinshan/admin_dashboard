@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+     <!-- Bootstrap CSS -->
+     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'
+     rel='stylesheet'
+     integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC'
+     crossorigin='anonymous'>
+
+ <!-- Vue 3 -->
+ <script src='https://cdn.jsdelivr.net/npm/vue@3.0.2/dist/vue.global.js'></script>
+ <!-- Vue 3: production version, optimized for size and speed -->
+ <!-- <script src='https://cdn.jsdelivr.net/npm/vue@3.0.2/dist/vue.global.prod.js'></script> -->
+</head>
+<body>
+<div id="app" class="m-5">
+  <h3 class='pb-2'>Product Details</h3>
+  
+  <form @submit="addProduct" method="post">
+      <div class="row">
+        <div class="col-4">
+          <label for="productName" class="col-form-label">Name</label>
+          <input v-model='formData.name'type="text" id=productName" class="form-control" >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="productQuantity" class="col-form-label">Quantity</label>
+          <input v-model='formData.quantity' type="number" id="productQuantity" class="form-control" >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="productQuantity" class="col-form-label">Available?</label>
+          <input v-model='formData.available' type="text" id="productQuantity" class="form-control" >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="productPrice" class="col-form-label">Price Per Item</label>
+          <input v-model='formData.price' type="number" step="0.01" id="productPrice" class="form-control" >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="productUrl" class="col-form-label">Product Url</label>
+          <input v-model='formData.url' type="text" id="productUrl" class="form-control" >
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+  </form>
+
+  
+
+    </div>
+    
+</body>
+<script>
+
+  const app = Vue.createApp({
+      data(){
+  
+          return{
+
+              formData:{
+                itemID:'',
+                name: '',
+                quantity: '',
+                available: '',
+                price: '',
+                url: '',
+                createdate: new Date()
+              }
+
+          }
+      },
+
+      methods:
+        {
+        
+          addProduct(e){
+            console.warn(this.formData)
+            e.preventDefault()
+
+        // fetch("http://localhost:3050/inventory/create",
+        // {
+        //   method: "POST",
+        //   headers: {
+        //       "Content-type": "application/json"
+        //   },
+        //   body: JSON.stringify(this.formData)
+
+        // })
+        // .then(response => console.log(response.json()))
+        // .then(data=> {this.formData= data})
+        // .catch(err => console.log(err.message))
+      }
+    }
+  })
+
+
+
+  const vm = app.mount('#app')
+</script>
+<!-- Bootstrap Javascript -->
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'
+integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM'
+crossorigin='anonymous'></script>
+</html>
