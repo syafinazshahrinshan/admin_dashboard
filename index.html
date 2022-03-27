@@ -18,20 +18,21 @@
     <!-- <script src='https://cdn.jsdelivr.net/npm/vue@3.0.2/dist/vue.global.prod.js'></script> -->
 </head>
 <body>
-    <div id="app" class="container">
-
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Inventory</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="order.html">Order</a>
-            </li>
-        </ul>
+    <div id="app" class="container-fluid">
+        <div class="navbar navbar-dark bg-dark">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active text-white fw-bold" aria-current="page" href="index.html">Inventory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-bold" href="order.html">Order</a>
+                </li>
+            </ul>
+        </div>
         
         <h1 class="mt-5">Inventory</h1>
         
-        <button type="button" class="btn btn-success mt-5 mb-2">
+        <button type="button" class="btn btn-success mt-3 mb-2">
             <a href="add_product.html" class="text-decoration-none text-white">Add Product</a>
         </button>
         <table class="table table-striped">

@@ -35,13 +35,13 @@
   </div>  
   <div class="row">
     <div class="col-6">
-      <h3 class='pb-2 mt-5'>Product Details</h3>
+      <h3 class='pb-2 mt-5'>Order Details</h3>
     </div>
 
     <div class="col-6">
-      <button type="submit" class="btn btn-success mt-5 float-end">
-        <a href="index.html" class="text-decoration-none text-white">Back</a>
-      </button>
+        <button type="submit" class="btn btn-success mt-5 float-end">
+            <a href="order.html" class="text-decoration-none text-white">Back</a>
+        </button>
     </div>
 
 
@@ -52,38 +52,28 @@
     
       <div class="row">
         <div class="col-4">
-          <label for="productName" class="col-form-label">Name</label>
-          <input v-model='data.name' type="text" id=productName" class="form-control" >
+          <label for="productQuantity" class="col-form-label">Name</label>
+          <input v-model='data.quantity' type="text" id=productQuantity" class="form-control" >
         </div>
       </div>
 
       <div class="row">
         <div class="col-4">
-          <label for="productQuantity" class="col-form-label">Quantity</label>
-          <input v-model='data.quantity' type="number" id="productQuantity" class="form-control" >
+          <label for="productPrice" class="col-form-label">Quantity</label>
+          <input v-model='data.price' type="number" id="productPrice" class="form-control" >
         </div>
       </div>
 
       <div class="row">
         <div class="col-4">
-          <label for="productQuantity" class="col-form-label">Available?</label>
-          <input v-model='data.available' type="text" id="productQuantity" class="form-control" >
+          <label for="productOrderStatus" class="col-form-label">Available?</label>
+          <input v-model='data.orderStatus' type="text" id="productOrderStatus" class="form-control" >
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-4">
-          <label for="productPrice" class="col-form-label">Price Per Item</label>
-          <input v-model='data.price' type="number" step="0.01" id="productPrice" class="form-control" >
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-4">
-          <label for="productUrl" class="col-form-label">Product Url</label>
-          <input v-model='data.url' type="text" id="productUrl" class="form-control" >
-        </div>
-      </div>
+
+
 
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
@@ -98,11 +88,9 @@
   
           return{
             data:{
-                name: '',
                 quantity: '',
-                available: '',
                 price: '',
-                url: '',
+                orderStatus: '',
             }
 
           }
