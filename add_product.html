@@ -26,7 +26,7 @@
   <div class="navbar navbar-dark bg-dark">
     <ul class="nav justify-content-end">
       <li class="nav-item">
-          <a class="nav-link active text-white fw-bold" aria-current="page" href="index.html">Inventory</a>
+          <a class="nav-link active text-white fw-bold" aria-current="page" href="/">Inventory</a>
       </li>
       <li class="nav-item">
           <a class="nav-link text-white fw-bold" href="order.html">Order</a>
@@ -40,7 +40,7 @@
 
     <div class="col-6">
       <button type="submit" class="btn btn-success mt-5 float-end">
-        <a href="index.html" class="text-decoration-none text-white">Back</a>
+        <a href="/" class="text-decoration-none text-white">Back</a>
       </button>
     </div>
 
@@ -48,12 +48,12 @@
 
   </div>
   
-  <form @submit.prevent="addProduct" method="POST">
+  <form @submit.prevent="addProduct">
     
       <div class="row">
         <div class="col-4">
           <label for="productName" class="col-form-label">Name</label>
-          <input v-model='data.name' type="text" id=productName" class="form-control" >
+          <input v-model='data.name' type="text" id="productName" class="form-control" >
         </div>
       </div>
 
@@ -66,15 +66,19 @@
 
       <div class="row">
         <div class="col-4">
-          <label for="productQuantity" class="col-form-label">Available?</label>
-          <input v-model='data.available' type="text" id="productQuantity" class="form-control" >
+          <label class="col-form-label" for="flexCheckDefault">
+            Available?
+          </label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" v-model='data.isAvailable' type="checkbox" id="productQuantity">
+          </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-4">
           <label for="productPrice" class="col-form-label">Price Per Item</label>
-          <input v-model='data.price' type="number" step="0.01" id="productPrice" class="form-control" >
+          <input v-model='data.pricePerItem' type="number" step="0.01" id="productPrice" class="form-control" >
         </div>
       </div>
 
@@ -100,8 +104,8 @@
             data:{
                 name: '',
                 quantity: '',
-                available: '',
-                price: '',
+                isAvailable: false,
+                pricePerItem: '',
                 url: '',
             }
 
@@ -113,23 +117,31 @@
         
           addProduct(){
 
-            axios.post('http://5.161.50.89:7322/inventory/create', this.data)
-            .then((res)=>{
-              console.log(res)
-            })
-          
-            axios('http://5.161.50.89:7322/inventory/create',{
-              method:'POST',
-              mode:'no-cors',
-              body: this.data,
-              headers:{
-                'Acess-Control-Allow-Origin':'*',
-                'Content-Type':'application/json',
+            var data = JSON.stringify({
+              "name": this.data.name,
+              "quantity": this.data.quantity,
+              "isAvailable": this.data.isAvailable,
+              "pricePerItem": this.data.pricePerItem,
+              "url": this.data.url
+            });
+
+            var config = {
+              method: 'post',
+              url: '/inventory/create',
+              headers: { 
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
               },
-              credentials:'same-origin',
-            }).then(response=>{
-              console.log(response)
+              data : data
+            };
+
+            axios(config)
+            .then(function (response) {
+              console.log(JSON.stringify(response.data));
             })
+            .catch(function (error) {
+              console.log(error);
+            });
 
             // var data = JSON.stringify({
             //   "name": name,

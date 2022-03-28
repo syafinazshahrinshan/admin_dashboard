@@ -22,7 +22,7 @@
         <div class="navbar navbar-dark bg-dark">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active text-white fw-bold" aria-current="page" href="index.html">Inventory</a>
+                    <a class="nav-link active text-white fw-bold" aria-current="page" href="/">Inventory</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white fw-bold" href="order.html">Order</a>
@@ -33,7 +33,7 @@
         <h1 class="mt-5">Inventory</h1>
         
         <button type="button" class="btn btn-success mt-3 mb-2">
-            <a href="add_product.html" class="text-decoration-none text-white">Add Product</a>
+            <a href="/addProduct" class="text-decoration-none text-white">Add Product</a>
         </button>
         <table class="table table-striped">
             <thead class="table table-primary">
@@ -50,7 +50,7 @@
             <tr v-for="product in inventory">
                 <td>
                     <div class="row">
-                    <a href="add_product.html">Edit</a>
+                    <a href="/addProduct">Edit</a>
                     </div>
 
                     <div class="row">
@@ -71,16 +71,12 @@
 <script>
     
 
-    const get_all_inventory ="http://localhost:3050/inventory/getAll"
-    const get_available = "http://localhost:3050/inventory/:itemID"
+    //const get_all_inventory ="http://localhost:3050/inventory/getAll"
+    //const get_available = "http://localhost:3050/inventory/:itemID"
 
     const app = Vue.createApp({
-        computed: {
-        }
-        ,
-
         mounted(){
-            fetch(get_all_inventory)
+            fetch('/inventory/getAll')
             .then(res=> res.json())
             .then(data => this.inventory = data)
             .catch(err => console.log(err.message))
@@ -89,7 +85,6 @@
         data(){
             return{
                 inventory:[],
-                
             }
         },
 
