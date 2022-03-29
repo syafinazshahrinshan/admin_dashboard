@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+        <!-- Bootstrap CSS -->
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'
+        rel='stylesheet'
+        integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC'
+        crossorigin='anonymous'>
+
+    <!-- Vue 3 -->
+    <script src='https://cdn.jsdelivr.net/npm/vue@3.0.2/dist/vue.global.js'></script>
+    <!-- Vue 3: production version, optimized for size and speed -->
+    <!-- <script src='https://cdn.jsdelivr.net/npm/vue@3.0.2/dist/vue.global.prod.js'></script> -->
+</head>
+<body>
+    <div id="app" class="container-fluid">
+
+        <div class="card">
+            <div class="card-header bg-success">
+                <div class="row">
+                <div class="col-6">
+                    <h5 class="text-white">Order ID</h5>
+                </div>
+
+                <div class="col-6">
+                    <h5 class="text-white">Creation Date Time</h5>
+                </div>
+                </div>
+        
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="table">
+                        <th></th></th>
+                        <th>User ID</th>
+                        <th>Creation Date Time</th>
+                        <th>Order Status</th>
+                        <th>Order Details</th>
+                    </thead>
+                    <tr>
+                        <td>
+                            <td>{{order.user_id}}</td>
+                            <td>{{order.createdat}}</td>
+                            <td>{{order.orderstatus}}</td>
+                            <td><a href="/OrderDetails/" id="orderid">Click here to view more</a></td>
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    
+
+    //const get_all_orders ="http://localhost:3000/order/getAll"
+
+    const app = Vue.createApp({
+        name: "order_card",
+        props:['order'],
+        computed: {
+        }
+        ,
+
+        data(){
+            return{
+                orders:[],
+                
+            }
+        },
+
+        methods:{
+            // orderDetails(){
+            // Router.push({
+            //     name:'/OrderDetails',
+            //     params:{
+            //         orderDetailsID: this.orderID
+            //     }
+
+            //     })
+            // }
+        }
+    })
+
+    const vm = app.mount('#app')
+</script>
+<!-- Bootstrap Javascript -->
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'
+integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM'
+crossorigin='anonymous'></script>
+</html>
