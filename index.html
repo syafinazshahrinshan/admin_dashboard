@@ -50,78 +50,16 @@
                 </div>
             </div>
         </div>
-        
-        <table class="table table-striped">
-            <thead class="table table-primary">
-                <th></th></th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Available?</th>
-                <th>Price Per Item</th>
-                <th>Product URL</th>
-                <th>Creation Date Time</th>
-            </thead>
-            
-            <tr v-for="product in inventory" id='product.itemid'>
-                <td>
-                    <div class="row">
-                    <a href="/addProduct">Edit</a>
-                    </div>
+        <div v-for="product in inventory">
+            <product-card :product="product"/>
+        </div>
 
-                    <div class="row">
-                    <a>Delete</a>
-                    </div></td>
-                <td>{{product.itemid}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.quantity}}</td>
-                <td>{{product.isavailable}}</td>
-                <td>{{product.priceperitem}}</td>
-                <td>{{product.url}}</td>
-                <td>{{product.createdat}}</td>
-            </tr>
-        </table>
     </div>
 </body>
 
-<script>
-    
-    //const get_all_inventory ="http://localhost:3050/inventory/getAll"
-    //const get_available = "http://localhost:3050/inventory/:itemID"
-
-    const app = Vue.createApp({
-        mounted(){
-            fetch('/inventory/getAll')
-            .then(res=> res.json())
-            .then(data => this.inventory = data)
-            .catch(err => console.log(err.message))
-
-        },
-
-        data(){
-            return{
-                inventory:[],
-
-                
-            }
-        },
-
-        methods:{
-            editProduct(){
-                router.push({
-                    name:'Edit',
-                    params:{
-
-                    }
-                })
-            }
-        }
-    })
-
-    const vm = app.mount('#app')
-</script>
 <!-- Bootstrap Javascript -->
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'
 integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM'
 crossorigin='anonymous'></script>
+<script src="/InventoryJS"></script>
 </html>
