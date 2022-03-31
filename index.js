@@ -88,12 +88,11 @@ app.post('/inventory/create', function(request, response){
 app.delete('/inventory/:itemID', function(request, response){
     var options = {
         'method': 'DELETE',
-        'url': INVENTORY_URL+'/inventory/:itemID',
+        'url': INVENTORY_URL+'/inventory/${itemID}',
         headers : {
             "content-type": "application/json",
         },
-        json: true ,
-        body: request.body
+        
     };
     req(options, function (error, res) {
         if (error) {

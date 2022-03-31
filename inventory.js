@@ -1,5 +1,6 @@
 // const { default: axios } = require("axios")
 
+
 const app = Vue.createApp({
     mounted(){
         fetch('/inventory/getAll')
@@ -11,29 +12,7 @@ const app = Vue.createApp({
 
     data(){
         return{
-            inventory:[],
-
-            
-
-            
-        }
-    },
-
-    methods:{
-        DeleteProduct(){
-
-            console.log('delete product')
-            // var config = {
-            //     method: 'delete',
-            //     url: '/inventory/:${itemID}',
-            //     headers: { 
-            //         'Access-Control-Allow-Origin': '*',
-            //         'Content-Type': 'application/json',
-            //     },
-            //     data : data
-            //   };
-
-            // axios.delete()
+            inventory:[]      
         }
     }
 })
@@ -44,18 +23,26 @@ app.component('product-card',{
     methods:{
         DeleteProduct(ele){
 
-            console.log(ele)
-            // var config = {
-            //     method: 'delete',
-            //     url: '/inventory/:${itemID}',
-            //     headers: { 
-            //         'Access-Control-Allow-Origin': '*',
-            //         'Content-Type': 'application/json',
-            //     },
-            //     data : data
-            //   };
+            var element=JSON.parse(JSON.stringify(ele))
+            var itemID=element.product.itemid
+            console.log(itemID)
+            var config = {
+                method: 'DELETE',
+                url: '/inventory/${itemID}',
+                headers: { 
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                },
+                
+            };
 
-            // axios.delete()
+            axios.delete('/inventory/' + itemID)
+            .then(function (response) {
+                console.log("Product Deleted!");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
 
     },
@@ -99,7 +86,7 @@ app.component('product-card',{
                                             </button>
                                         </div>
                                         <div>
-                                            <button type='button' class='btn' @click="DeleteProduct(this)">Delete
+                                            <button type='button' class='btn' v-on:click="DeleteProduct(this)">Delete
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                 <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
