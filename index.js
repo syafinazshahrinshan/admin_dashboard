@@ -14,6 +14,11 @@ app.get('/addProduct', function(request, response){
     response.sendFile(path.join(__dirname, '/add_product.html'));
 });
 
+// file path for ADD PRODUCT
+app.get('/EditProduct', function(request, response){
+    response.sendFile(path.join(__dirname, '/edit_product.html'));
+});
+
 // file path for INVENTORY INDEX
 app.get('/Inventory', function(request, response){
     response.sendFile(path.join(__dirname, '/index.html'));
@@ -141,8 +146,6 @@ app.post('/order/create', function(request, response){
     });      
 
 });
-
-
 
 
 
